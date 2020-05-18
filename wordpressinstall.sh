@@ -33,6 +33,7 @@ echo "dbservername is : ${2}" ${log_path}
 echo "dbusername is : ${3}" >> ${log_path}
 echo "dbPassword is : ${4}" >> ${log_path}
 echo "domain_name is : ${5}" >> ${log_path}
+echo "VM_Password is : ${6}" >> ${log_path}
 
 sudo sed -i "s~path: default_path~path: /var/www/html~" ${vars_path} 
 sudo sed -i "s~domain_name: domain~domain_name: ${5}~" ${vars_path}
@@ -40,7 +41,7 @@ sudo sed -i "s~user_name: azusername~user_name: ${1}~" ${vars_path}
 sudo sed -i "s~'localhost'~'${2}'~" /home/${1}/wordpress_playbook/roles/wordpress/templates/wp-config.php
 sudo sed -i "s~wp_db_user: wordpress~wp_db_user: ${3}~" ${vars_path} 
 sudo sed -i "s~wp_db_password: password~wp_db_password: ${4}~" ${vars_path}
-sudo sed -i "s~vm_password: password~vm_password: ${2}~" ${vars_path}
+sudo sed -i "s~vm_password: password~vm_password: ${6}~" ${vars_path}
 
 ansible-playbook /home/${1}/wordpress_playbook/playbook.yml -i /etc/ansible/hosts -u ${1}
 }
@@ -49,7 +50,7 @@ sudo sed -i "s~#   StrictHostKeyChecking ask~   StrictHostKeyChecking no~" /etc/
 sudo systemctl restart ssh
 install_ansible >> ${log_path}
 configure_ansible ${1} ${3} >> ${log_path}
-wordpress_install ${3} ${4} ${5} ${6} ${7} >> ${log_path}
+wordpress_install ${3} ${4} ${5} ${6} ${7} ${2} >> ${log_path}
 sudo sed -i "s~   StrictHostKeyChecking no~#   StrictHostKeyChecking ask~" /etc/ssh/ssh_config 
 sudo systemctl restart ssh
 
