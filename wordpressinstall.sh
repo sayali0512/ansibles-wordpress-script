@@ -34,6 +34,8 @@ echo "dbusername is : ${3}" >> ${log_path}
 echo "dbPassword is : ${4}" >> ${log_path}
 echo "domain_name is : ${5}" >> ${log_path}
 echo "VM_Password is : ${6}" >> ${log_path}
+echo "VM_IP is : ${7}" >> ${log_path}
+
 
 sudo sed -i "s~domain_name: domain~domain_name: ${5}~" ${vars_path}
 sudo sed -i "s~user_name: azusername~user_name: ${1}~" ${vars_path}  
@@ -41,7 +43,7 @@ sudo sed -i "s~wp_db_server_name: wordpress~wp_db_server_name: ${2}~" ${vars_pat
 sudo sed -i "s~wp_db_user: wordpress~wp_db_user: ${3}~" ${vars_path} 
 sudo sed -i "s~wp_db_password: password~wp_db_password: ${4}~" ${vars_path}
 sudo sed -i "s~vm_password: password~vm_password: ${6}~" ${vars_path}
-sudo sed -i "s~vm_ip: IP~vm_ip: ${6}~" ${vars_path}
+sudo sed -i "s~vm_ip: IP~vm_ip: ${7}~" ${vars_path}
 
 
 ansible-playbook /home/${1}/wordpress_playbook/playbook.yml -i /etc/ansible/hosts -u ${1}
