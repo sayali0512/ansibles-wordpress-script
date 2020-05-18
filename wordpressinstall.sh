@@ -35,7 +35,6 @@ echo "dbPassword is : ${4}" >> ${log_path}
 echo "domain_name is : ${5}" >> ${log_path}
 echo "VM_Password is : ${6}" >> ${log_path}
 
-sudo sed -i "s~path: default_path~path: /var/www/html~" ${vars_path} 
 sudo sed -i "s~domain_name: domain~domain_name: ${5}~" ${vars_path}
 sudo sed -i "s~user_name: azusername~user_name: ${1}~" ${vars_path}  
 sudo sed -i "s~'localhost'~'${2}'~" /home/${1}/wordpress_playbook/roles/wordpress/templates/wp-config.php
