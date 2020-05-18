@@ -41,6 +41,8 @@ sudo sed -i "s~wp_db_server_name: wordpress~wp_db_server_name: ${2}~" ${vars_pat
 sudo sed -i "s~wp_db_user: wordpress~wp_db_user: ${3}~" ${vars_path} 
 sudo sed -i "s~wp_db_password: password~wp_db_password: ${4}~" ${vars_path}
 sudo sed -i "s~vm_password: password~vm_password: ${6}~" ${vars_path}
+sudo sed -i "s~vm_ip: IP~vm_ip: ${6}~" ${vars_path}
+
 
 ansible-playbook /home/${1}/wordpress_playbook/playbook.yml -i /etc/ansible/hosts -u ${1}
 }
