@@ -30,6 +30,7 @@ echo "dbusername is : ${3}" >> /home/${1}/var.txt
 echo "dbPassword is : ${4}" >> /home/${1}/var.txt
 echo "domain_name is : ${5}" >> /home/${1}/var.txt
 
+sudo sed -i "s~path: default_path~path: /var/www/html~" /home/${1}/wordpress_playbook/group_vars/all >> /home/${1}/var.txt
 sudo sed -i "s~domain_name: domain~domain_name: ${5}~" /home/${1}/wordpress_playbook/group_vars/all >> /home/${1}/var.txt
 sudo sed -i "s~user_name: azusername~user_name: ${1}~" /home/${1}/wordpress_playbook/group_vars/all  >> /home/${1}/var.txt 
 sudo sed -i "s~'localhost'~'${2}'~" /home/${1}/wordpress_playbook/roles/wordpress/templates/wp-config.php >> /home/${1}/var.txt
