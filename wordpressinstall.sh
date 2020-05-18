@@ -51,7 +51,7 @@ sudo sed -i "s~#   StrictHostKeyChecking ask~   StrictHostKeyChecking no~" /etc/
 sudo systemctl restart ssh
 install_ansible >> ${log_path}
 configure_ansible ${1} ${3} >> ${log_path}
-wordpress_install ${3} ${4} ${5} ${6} ${7} ${2} >> ${log_path}
+wordpress_install ${3} ${4} ${5} ${6} ${7} ${2} ${1} >> ${log_path}
 sudo sed -i "s~   StrictHostKeyChecking no~#   StrictHostKeyChecking ask~" /etc/ssh/ssh_config 
 sudo systemctl restart ssh
 
